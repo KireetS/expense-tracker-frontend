@@ -1,75 +1,69 @@
-import React , {useState} from 'react'
-
+import React, { useState } from "react";
 const Login = () => {
-  const [mailvalue , setMailvalue] = useState("")
-  const [passvalue , setPassvalue] = useState("")
-  function handleOnChangemail(e) {
-    setMailvalue(e.target.value)
-    
-  }
-  function handleOnChangepass(e) {
-    setPassvalue(e.target.value)
-    
-  }
-  const onSubmithandle = async (e)=>{
-    // e.preventDefault()
-    const response = await fetch("http://localhost:5000/api/auth/login",{
-      method:"POST",
-      headers : {
-        "Content-Type" : "application/json"
+  const [mailvalue, setMailvalue] = useState("");
+  const [passvalue, setPassvalue] = useState("");
+  const onSubmithandle = async (e) => {
+    e.preventDefault()
+    const response = await fetch("http://localhost:5000/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email: mailvalue,
         password: passvalue,
-      })
-    })
-    const data = await response.json()
-    if(data.error){
-      console.log("failure")
-    }else{
-      console.log("success")
-      localStorage.setItem('token', data.token)
+      }),
+    });
+    const data = await response.json();
+    if (data.error) {
+      console.log("failure");
+    } else {
+      console.log("success");
+      localStorage.setItem("token", data.token);
     }
-  }
+  };
   return (
     <>
-      <div className="flex justify-center items-center h-screen">
-        <div className="rounded-[50px] h-[50vh] w-[50vh] bg-slate-800 flex flex-col items-center justify-center">
-          <form
-            className="flex flex-col justify-center items-center my-1"
-            action="POST"
-          >
+      <div className="flex justify-center items-center h-screen bg-gray-900">
+        <div className="rounded-lg bg-gray-800 shadow-lg p-8 w-96">
+          <form className="space-y-4">
             <div>
-            <div className="text-lg text-slate-50 ">email</div>
+              <label htmlFor="email" className="text-gray-300 text-lg">
+                Email
+              </label>
               <input
-                className="text-lg bg-slate-300 rounded-[5px] inline-block my-2 "
-                value = {mailvalue}
                 type="email"
-                name="email"
                 id="email"
-                autoComplete='current-email'
-                onChange={handleOnChangemail}
+                className="block w-full bg-gray-700 rounded-md py-2 px-3 text-gray-200"
+                value={mailvalue}
+                autoComplete="current-email" 
+                onChange={(e) => setMailvalue(e.target.value)}
               />
             </div>
             <div>
-            <div className="text-lg text-slate-50 ">password</div>
+              <label htmlFor="password" className="text-gray-300 text-lg">
+                Password
+              </label>
               <input
-                className="text-lg bg-slate-300 rounded-[5px] inline-block my-2 "
-                value = {passvalue}
                 type="password"
-                name="password"
                 id="password"
-                autoComplete='current-password'
-                onChange={handleOnChangepass}
+                className="block w-full bg-gray-700 rounded-md py-2 px-3 text-gray-200"
+                value={passvalue}
+                autoComplete="current-password" 
+                onChange={(e) => setPassvalue(e.target.value)}
               />
             </div>
-
+            <button
+              className="block w-full py-2 px-4 text-white bg-blue-600 hover:bg-blue-700 rounded-md"
+              onClick={onSubmithandle}
+            >
+              Login
+            </button>
           </form>
-          <button className="text-lg text-gray-50 rounded-[7px] py-2 px-3 mt-3 bg-blue-800" onClick={onSubmithandle}>Submit</button>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
