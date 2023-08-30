@@ -25,7 +25,7 @@ const NavbarUser = () => {
   }, []);
   return (
     <>
-      <nav className="bg-white relative border-gray-200 dark:bg-gray-900">
+      <nav className=" bg-white border-gray-200 dark:bg-gray-900 fixed w-full top-0 z-50">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link href="https://flowbite.com/" className="flex items-center">
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
@@ -35,7 +35,7 @@ const NavbarUser = () => {
           <div className="flex items-center md:order-2">
             <button
               type="button"
-              className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+              className="flex mr-3 text-sm relative bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
               id="user-menu-button"
               // aria-expanded="false"
               data-dropdown-toggle="user-dropdown"

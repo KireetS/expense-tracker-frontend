@@ -14,6 +14,7 @@ function App() {
   console.log(login)
   return (
     <>
+      <div className="overflow-x-hidden">
       <BrowserRouter>
         
            {login ? <NavbarUser/> : <NavbarGuest/>}
@@ -24,6 +25,7 @@ function App() {
           {login && <Dashboard/>}
           
       </BrowserRouter>
+      </div>
 
     </>
   );
