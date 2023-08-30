@@ -1,5 +1,6 @@
 import React , {useEffect, useState} from 'react'
-
+import AddExpenseInline from './AddExpenseInline';
+// import AddExpense from './AddExpense';
 const Expenses = () => {
   
 
@@ -37,6 +38,9 @@ const Expenses = () => {
 
   return (
     <>
+
+      {/* <AddExpense/> */}
+      <AddExpenseInline />
       <div className="min-h-screen  right-0 bg-gray-900 text-white">
       <div className="bg-gray-800 py-4 px-6">
         <h2 className="text-xl font-semibold">{selectedMonth} 2023</h2>
