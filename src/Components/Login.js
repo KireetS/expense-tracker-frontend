@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import loginContext from "../contexts/login/loginContext";
+import {useNavigate} from "react-router-dom"
 const Login = () => {
+  const {checkIfLogin} = useContext(loginContext)
   const [mailvalue, setMailvalue] = useState("");
   const [passvalue, setPassvalue] = useState("");
+  const history = useNavigate()
+
   const onSubmithandle = async (e) => {
+    
     e.preventDefault()
     const response = await fetch("http://localhost:5000/api/auth/login", {
       method: "POST",
@@ -20,13 +26,15 @@ const Login = () => {
     } else {
       console.log("success");
       localStorage.setItem("token", data.token);
+      checkIfLogin()
+      history("/")
     }
   };
   return (
     <>
       <div className="flex justify-center items-center h-screen bg-gray-900">
         <div className="rounded-lg bg-gray-800 shadow-lg p-8 w-96">
-          <form className="space-y-4">
+          <form className="space-y-4 my-4">
             <div>
               <label htmlFor="email" className="text-gray-300 text-lg">
                 Email
@@ -53,13 +61,16 @@ const Login = () => {
                 onChange={(e) => setPassvalue(e.target.value)}
               />
             </div>
-            <button
+            
+          </form>
+          <button
               className="block w-full py-2 px-4 text-white bg-blue-600 hover:bg-blue-700 rounded-md"
-              onClick={onSubmithandle}
+              onClick={(e)=>{
+                onSubmithandle(e)
+              }}
             >
               Login
             </button>
-          </form>
         </div>
       </div>
     </>
