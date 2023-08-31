@@ -5,7 +5,7 @@ import expContext from '../../contexts/expensesbtn/expContext';
 
 const Expenses = () => {
   
-  const [editingIndex, setEditingIndex] = useState(-1);
+  // const [editingIndex, setEditingIndex] = useState(-1);
   const months = [
     "January", "February", "March", "April",
     "May", "June", "July", "August",
