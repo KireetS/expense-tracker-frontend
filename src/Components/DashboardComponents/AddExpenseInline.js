@@ -1,11 +1,14 @@
-import React  , {useState}from "react";
-
+import React  , {useContext, useState}from "react";
+import expContext from "../../contexts/expensesbtn/expContext";
 const AddExpenseInline = () => {
   const [expensename, setExpenseName] = useState("")
   const [cost , setCost] = useState(0)
+  const [day , setDay] = useState(1)
+
+  const {setPress} = useContext(expContext)
   const onClickSubmit = async()=>{
     try{
-      const response = await fetch("http://localhost:5000/api/expenses/add", {
+      await fetch("http://localhost:5000/api/expenses/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -14,11 +17,12 @@ const AddExpenseInline = () => {
       body: JSON.stringify({
         name: expensename,
         money: cost,
+        date:day
       })
     
     });
-    const data = await response.json()
-    console.log(data)
+    // const data = await response.json()
+    // console.log(data)
     }catch(err){
       console.error("error fetching " , err)
       console.log("yeh dekh")
@@ -31,6 +35,9 @@ const AddExpenseInline = () => {
           type="text"
           placeholder="Day"
           className="w-16 px-2 py-1 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+          onChange={(e)=>{
+            setDay(e.target.value)
+          }}
         />
         <input
           type="text"
@@ -59,7 +66,13 @@ const AddExpenseInline = () => {
           }}
         />
         <button className="px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
-        onClick={onClickSubmit}
+        onClick={()=>{
+          onClickSubmit()
+          setPress(true)
+          setTimeout(()=>{
+            setPress(false)
+          },50)
+        }}
         >
           Add Expense
         </button>

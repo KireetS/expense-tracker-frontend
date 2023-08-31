@@ -7,7 +7,7 @@ import { useContext } from "react";
 import loginContext from "./contexts/login/loginContext";
 import NavbarUser from "./Components/NavbarUser";
 import Dashboard from "./Components/Dashboard";
-
+import ExpState from "./contexts/expensesbtn/ExpState";
 
 function App() {
   const {login} = useContext(loginContext)  
@@ -16,14 +16,14 @@ function App() {
     <>
       <div className="overflow-x-hidden">
       <BrowserRouter>
-        
+        <ExpState>
            {login ? <NavbarUser/> : <NavbarGuest/>}
           <Routes>
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
           </Routes>
           {login && <Dashboard/>}
-          
+          </ExpState> 
       </BrowserRouter>
       </div>
 
