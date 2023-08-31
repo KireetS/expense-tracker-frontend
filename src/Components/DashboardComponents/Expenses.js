@@ -5,7 +5,7 @@ import expContext from '../../contexts/expensesbtn/expContext';
 
 const Expenses = () => {
   
-
+  const [editingIndex, setEditingIndex] = useState(-1);
   const months = [
     "January", "February", "March", "April",
     "May", "June", "July", "August",
@@ -91,7 +91,12 @@ const Expenses = () => {
             {expensesData.map((expense, index) => (
               <tr key={index} id = {`${expense._id}`} className={index % 2 === 0 ? "bg-gray-700" : "bg-gray-600"}>
                 <td className="py-2 px-4">{`${expense.date} ${months[expense.month - 1]} ${expense.year}`}</td>
-                <td className="py-2 px-4">{expense.name}</td>
+                <td className="py-2 px-4">
+                  
+                  {expense.name}
+                  
+                  
+                  </td>
                 <td className="py-2 px-4">${expense.money}</td>
                 <td className="py-2 px-4">
                     <button 
@@ -102,6 +107,13 @@ const Expenses = () => {
                     }}
                     >
                       Delete
+                    </button>
+                  </td>
+                  <td className="py-2 px-4">
+                    <button 
+                    className="text-white p-2 bg-blue-500 rounded-lg"
+                    >
+                      Update
                     </button>
                   </td>
               </tr>
