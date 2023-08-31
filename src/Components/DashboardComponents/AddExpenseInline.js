@@ -4,7 +4,8 @@ const AddExpenseInline = () => {
   const [expensename, setExpenseName] = useState("")
   const [cost , setCost] = useState(0)
   const [day , setDay] = useState(1)
-
+  const [month , setMonth] = useState(1) 
+  const [year , setYear] = useState(2001)   
   const {setPress} = useContext(expContext)
   const onClickSubmit = async()=>{
     try{
@@ -17,7 +18,9 @@ const AddExpenseInline = () => {
       body: JSON.stringify({
         name: expensename,
         money: cost,
-        date:day
+        date:day,
+        month : month,
+        year : year
       })
     
     });
@@ -43,11 +46,17 @@ const AddExpenseInline = () => {
           type="text"
           placeholder="Month"
           className="w-24 px-2 py-1 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+          onChange={(e)=>{
+            setMonth(e.target.value)
+          }}
         />
         <input
           type="text"
           placeholder="Year"
           className="w-20 px-2 py-1 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+          onChange={(e)=>{
+            setYear(e.target.value)
+          }}
         />
         <input
           type="text"
