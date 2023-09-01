@@ -1,12 +1,14 @@
 import React  , {useContext, useState}from "react";
 import expContext from "../../contexts/expensesbtn/expContext";
-const AddExpenseInline = () => {
+const AddExpenseInline = (props) => {
   const [expensename, setExpenseName] = useState("")
   const [cost , setCost] = useState(0)
   const [day , setDay] = useState(1)
-  const [month , setMonth] = useState(1) 
+  // const [month , setMonth] = useState(props.month) 
   const [year , setYear] = useState(2001)   
   const {setPress} = useContext(expContext)
+
+  
   const onClickSubmit = async()=>{
     try{
       await fetch("http://localhost:5000/api/expenses/add", {
@@ -19,7 +21,7 @@ const AddExpenseInline = () => {
         name: expensename,
         money: cost,
         date:day,
-        month : month,
+        month : props.month,
         year : year
       })
     
@@ -46,9 +48,8 @@ const AddExpenseInline = () => {
           type="text"
           placeholder="Month"
           className="w-24 px-2 py-1 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
-          onChange={(e)=>{
-            setMonth(e.target.value)
-          }}
+          value = {props.month}
+          onChange={()=>{}}
         />
         <input
           type="text"
@@ -76,6 +77,7 @@ const AddExpenseInline = () => {
         />
         <button className="px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
         onClick={()=>{
+         
           onClickSubmit()
           setPress(true)
           setTimeout(()=>{
