@@ -34,12 +34,12 @@ const AddExpenseInline = (props) => {
     }
   }
   return (
-    <div className="bg-gray-800 p-4 w-[82.5%] shadow-md">
-      <div className="flex items-center space-x-2">
+    <div className="bg-gray-800 p-4 w-screen lg:w-[83.5vw] shadow-md">
+      <div className="flex flex-wrap items-center space-x-2">
         <input
           type="text"
           placeholder="Day"
-          className="w-16 px-2 py-1 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+          className="w-16 px-2 py-1 m-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
           onChange={(e)=>{
             setDay(e.target.value)
           }}
@@ -47,14 +47,14 @@ const AddExpenseInline = (props) => {
         <input
           type="text"
           placeholder="Month"
-          className="w-24 px-2 py-1 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+          className="w-24 px-2 py-1 m-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
           value = {props.month}
           onChange={()=>{}}
         />
         <input
           type="text"
           placeholder="Year"
-          className="w-20 px-2 py-1 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+          className="w-20 px-2 py-1 m-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
           onChange={(e)=>{
             setYear(e.target.value)
           }}
@@ -62,7 +62,7 @@ const AddExpenseInline = (props) => {
         <input
           type="text"
           placeholder="Expense Name"
-          className="flex-grow px-2 py-1 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+          className="flex-grow px-2 py-1 m-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
           onChange={(e)=>{
             setExpenseName(e.target.value)
           }}
@@ -70,12 +70,12 @@ const AddExpenseInline = (props) => {
         <input
           type="text"
           placeholder="Expense Cost"
-          className="w-28 px-2 py-1 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+          className="w-28 px-2 py-1 m-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
           onChange={(e)=>{
             setCost(e.target.value)
           }}
         />
-        <button className="px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        <button className="px-4 py-1 m-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
         onClick={()=>{
          
           onClickSubmit()

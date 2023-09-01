@@ -14,7 +14,7 @@ function App() {
   console.log(login)
   return (
     <>
-      <div className="overflow-x-hidden">
+      <div>
       <BrowserRouter>
         <ExpState>
            {login ? <NavbarUser/> : <NavbarGuest/>}

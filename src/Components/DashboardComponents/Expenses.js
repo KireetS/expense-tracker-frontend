@@ -1,3 +1,4 @@
+
 import React, { useContext, useEffect, useState } from "react";
 import AddExpenseInline from "./AddExpenseInline";
 import expContext from "../../contexts/expensesbtn/expContext";
@@ -5,8 +6,9 @@ import Update from "./Updating/Update";
 import UpdateDate from "./Updating/UpdateDate";
 // import AddExpense from './AddExpense';
 
-const Expenses = () => {
+const Expenses = (props) => {
   const [editingIndex, setEditingIndex] = useState(-1);
+  const {selectedYear} = props
   const months = [
     "January",
     "February",
@@ -35,7 +37,7 @@ const Expenses = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/expenses/getnotes",
+          `http://localhost:5000/api/expenses/getnotes?month=${selectedMonth}&year=${selectedYear}`,
           {
             method: "GET",
             headers: {
@@ -53,7 +55,7 @@ const Expenses = () => {
       }
     }
     fetchData();
-  }, [press, deleted , updated]);
+  }, [press, deleted , updated , selectedMonth , selectedYear]);
 
   const delExpense = async (expId) => {
     const response = await fetch(
@@ -113,7 +115,7 @@ const Expenses = () => {
       <AddExpenseInline month = {selectedMonth} />
       <div className="min-h-screen  right-0 bg-gray-900 text-white">
         <div className="bg-gray-800 py-4 px-6">
-          <h2 className="text-xl font-semibold">{selectedMonth} 2023</h2>
+          <h2 className="text-xl font-semibold">{selectedMonth} {selectedYear}</h2>
           <div className="mt-2 flex  space-x-2 md:space-x-4 lg:space-x-6  flex-wrap ">
             {months.map((month) => (
               <button
@@ -131,7 +133,7 @@ const Expenses = () => {
           </div>
         </div>
         <div className="p-6">
-          <table className="lg:min-w-[70%] bg-gray-800 rounded-lg">
+          <table className="lg:min-w-[70%] overflow-auto bg-gray-800 rounded-lg">
             <thead>
               <tr>
                 <th className="py-2 px-4 text-left">Date</th>
