@@ -112,16 +112,18 @@ const Expenses = (props) => {
   return (
     <>
       {/* <AddExpense/> */}
-      <AddExpenseInline month = {selectedMonth} />
+      <div className="flex">
+        <AddExpenseInline month = {selectedMonth} year={selectedYear} />  
+      </div>
       <div className="min-h-screen  right-0 bg-gray-900 text-white">
         <div className="bg-gray-800 py-4 px-6">
           <h2 className="text-xl font-semibold">{selectedMonth} {selectedYear}</h2>
-          <div className="mt-2 flex  space-x-2 md:space-x-4 lg:space-x-6  flex-wrap ">
+          <div className="mt-2 flex overflow-visible overflow-x-auto md:overflow-x-hidden space-x-2 md:space-x-4 lg:space-x-6  flex-wrap ">
             {months.map((month) => (
               <button
                 key={month}
                 onClick={() => setSelectedMonth(month)}
-                className={`py-1 px-2 m-3 md:m-2 lg:m-0 rounded-md ${
+                className={`py-1 px-2 m-3 md:m-4 lg:m-6 rounded-md ${
                   selectedMonth === month
                     ? "bg-gray-700 text-white"
                     : "bg-gray-600 text-gray-400"
@@ -133,7 +135,7 @@ const Expenses = (props) => {
           </div>
         </div>
         <div className="p-6">
-          <table className="lg:min-w-[70%] overflow-auto bg-gray-800 rounded-lg">
+          <table className="lg:min-w-[70%] overflow-y-auto bg-gray-800 rounded-lg">
             <thead>
               <tr>
                 <th className="py-2 px-4 text-left">Date</th>

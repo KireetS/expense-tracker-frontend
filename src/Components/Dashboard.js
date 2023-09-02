@@ -166,7 +166,7 @@ const Dashboard = () => {
             </div>
           </aside>
         </div>
-        <div className="fixed top-16 left-0 sm:left-64 w-screen h-screen overflow-hidden">
+        <div className=" flex-1 sm:ml-64 w-full h-screen overflow-x-hidden">
           <Routes>
             <Route
               path="/dashboard"
