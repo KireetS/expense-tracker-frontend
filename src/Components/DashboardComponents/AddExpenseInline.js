@@ -8,7 +8,7 @@ const AddExpenseInline = (props) => {
   // const [year , setYear] = useState(2001)   
   const {setPress} = useContext(expContext)
 
-  
+  const [category , setCategory] = useState("Fixed Essentials")
   const onClickSubmit = async()=>{
     try{
       await fetch("http://localhost:5000/api/expenses/add", {
@@ -22,7 +22,8 @@ const AddExpenseInline = (props) => {
         money: cost,
         date:day,
         month : props.month,
-        year : props.year
+        year : props.year,
+        category : category
       })
     
     });
@@ -40,49 +41,62 @@ const AddExpenseInline = (props) => {
           type="text"
           placeholder="Day"
           className="w-16 px-2 py-1 m-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300 flex-1"
-          onChange={(e)=>{
-            setDay(e.target.value)
+          onChange={(e) => {
+            setDay(e.target.value);
           }}
         />
         <input
           type="text"
           placeholder="Month"
           className="w-24 px-2 py-1 m-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300 flex-1"
-          value = {props.month}
-          onChange={()=>{}}
+          value={props.month}
+          onChange={() => {}}
         />
         <input
           type="text"
           placeholder="Year"
           value={props.year}
           className="w-20 px-2 py-1 m-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300 flex-1"
-          onChange={()=>{}}
+          onChange={() => {}}
         />
+        <select
+          placeholder="Category"
+          className="w-20 px-2 py-1 m-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300 flex-1"
+          value={category}
+          onChange={(e) => {
+            setCategory(e.target.value);
+          }}
+        >
+          <option value="Fixed Essentials">Fixed Essentials</option>
+          <option value="Emergency needs">Emergency needs</option>
+          <option value="Wants">Wants</option>
+          <option value="Investments">Investments</option>
+        </select>
         <input
           type="text"
           placeholder="Expense Name"
           className="flex-grow px-2 py-1 m-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300 flex-1"
-          onChange={(e)=>{
-            setExpenseName(e.target.value)
+          onChange={(e) => {
+            setExpenseName(e.target.value);
           }}
         />
         <input
           type="text"
           placeholder="Expense Cost"
           className="w-28 px-2 py-1 m-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300 flex-1"
-          onChange={(e)=>{
-            setCost(e.target.value)
+          onChange={(e) => {
+            setCost(e.target.value);
           }}
         />
-        <button className="px-4 py-1 m-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300 flex-1"
-        onClick={()=>{
-         
-          onClickSubmit()
-          setPress(true)
-          setTimeout(()=>{
-            setPress(false)
-          },50)
-        }}
+        <button
+          className="px-4 py-1 m-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300 flex-1"
+          onClick={() => {
+            onClickSubmit();
+            setPress(true);
+            setTimeout(() => {
+              setPress(false);
+            }, 50);
+          }}
         >
           Add Expense
         </button>

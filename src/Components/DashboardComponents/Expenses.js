@@ -23,6 +23,13 @@ const Expenses = (props) => {
     "November",
     "December",
   ];
+
+  const category = [
+    "Fixed Essentials",
+    "Emergency needs",
+    "Wants",
+    "Investments"
+  ];
   const { press } = useContext(expContext);
   const [selectedMonth, setSelectedMonth] = useState("August"); // Default month
   const [ename, setEname] = useState("");
@@ -33,11 +40,12 @@ const Expenses = (props) => {
   const [edate , setEdate] = useState(1)
   const [emonth , setEmonth] = useState("") 
   const [eyear , setEyear] = useState(0)   
+  const [selectedCategory , setSelectedCategory] = useState("Fixed Essentials")
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/expenses/getnotes?month=${selectedMonth}&year=${selectedYear}`,
+          `http://localhost:5000/api/expenses/getnotes?month=${selectedMonth}&year=${selectedYear}&category=${selectedCategory}`,
           {
             method: "GET",
             headers: {
@@ -55,7 +63,7 @@ const Expenses = (props) => {
       }
     }
     fetchData();
-  }, [press, deleted , updated , selectedMonth , selectedYear]);
+  }, [press, deleted , updated , selectedMonth , selectedYear , selectedCategory]);
 
   const delExpense = async (expId) => {
     const response = await fetch(
@@ -134,6 +142,28 @@ const Expenses = (props) => {
             ))}
           </div>
         </div>
+
+
+        {/* category start */}
+        <div className="bg-gray-800 py-4 px-6">
+          <h2 className="text-xl font-semibold">{selectedCategory}</h2>
+          <div className="mt-2 flex overflow-visible overflow-x-auto md:overflow-x-hidden space-x-2 md:space-x-4 lg:space-x-6  flex-wrap ">
+            {category.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`py-1 px-2 m-3 md:m-4 lg:m-6 rounded-md ${
+                  selectedCategory === cat
+                    ? "bg-gray-700 text-white"
+                    : "bg-gray-600 text-gray-400"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+        {/* category end */}
         <div className="p-6">
           <table className="lg:min-w-[70%] overflow-y-auto bg-gray-800 rounded-lg">
             <thead>

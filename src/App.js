@@ -26,7 +26,6 @@ function App() {
           </ExpState> 
       </BrowserRouter>
       </div>
-
     </>
   );
 }
