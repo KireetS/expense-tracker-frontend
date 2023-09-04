@@ -8,6 +8,7 @@ import loginContext from "./contexts/login/loginContext";
 import NavbarUser from "./Components/NavbarUser";
 import Dashboard from "./Components/Dashboard";
 import ExpState from "./contexts/expensesbtn/ExpState";
+import Home from "./Components/Home";
 
 function App() {
   const {login} = useContext(loginContext)  
@@ -19,6 +20,7 @@ function App() {
         <ExpState>
            {login ? <NavbarUser/> : <NavbarGuest/>}
           <Routes>
+            <Route path="/" element={<Home/>} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
           </Routes>
