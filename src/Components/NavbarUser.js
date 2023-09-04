@@ -11,18 +11,7 @@ const NavbarUser = () => {
     setIsNavOpen(!isNavOpen);
   };
 
-  // Detect screen width on mount and window resize
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setIsNavOpen(window.innerWidth >= 768); // 768 is the breakpoint for medium screens
-  //   };
-    
-  //   handleResize(); // Initial check
 
-  //   window.addEventListener("resize", handleResize);
-  //   // setIsNavOpen(false);
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
   return (
     <>
       <nav className=" bg-white border-gray-200 dark:bg-gray-900 fixed w-full top-0 z-50">
