@@ -84,7 +84,7 @@ const VisualizationCat = (props) => {
   const fetchCategoryTotal = async (cat) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/expenses/getnotes?category=${cat}&year=${selectedYear}`,
+        `https://expensetrackerbackend-tcjg.onrender.com/api/expenses/getnotes?category=${cat}&year=${selectedYear}`,
         {
           method: 'GET',
           headers: {

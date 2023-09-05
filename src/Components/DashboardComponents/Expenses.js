@@ -45,7 +45,7 @@ const Expenses = (props) => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/expenses/getnotes?month=${selectedMonth}&year=${selectedYear}&category=${selectedCategory}`,
+          `https://expensetrackerbackend-tcjg.onrender.com/api/expenses/getnotes?month=${selectedMonth}&year=${selectedYear}&category=${selectedCategory}`,
           {
             method: "GET",
             headers: {

@@ -11,7 +11,7 @@ const AddExpenseInline = (props) => {
   const [category , setCategory] = useState("Fixed Essentials")
   const onClickSubmit = async()=>{
     try{
-      await fetch("http://localhost:5000/api/expenses/add", {
+      await fetch("https://expensetrackerbackend-tcjg.onrender.com/api/expenses/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
