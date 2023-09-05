@@ -67,7 +67,7 @@ const Expenses = (props) => {
 
   const delExpense = async (expId) => {
     const response = await fetch(
-      `http://localhost:5000/api/expenses/delete/${expId}`,
+      `https://expensetrackerbackend-tcjg.onrender.com/api/expenses/delete/${expId}`,
       {
         method: "DELETE",
         headers: {
@@ -87,7 +87,7 @@ const Expenses = (props) => {
 
   const updateExp = async(expId)=>{
     const response = await fetch(
-      `http://localhost:5000/api/expenses/update/${expId}`,
+      `https://expensetrackerbackend-tcjg.onrender.com/api/expenses/update/${expId}`,
       {
         method: "PUT",
         headers: {
